@@ -49,8 +49,10 @@ app.use((req, res) => {
   res.status(404).json({ error: 'Endpoint not found' });
 });
 
-app.listen(PORT, () => {
-  console.log(`D.BRAIN API running on port ${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`D.BRAIN API running on port ${PORT}`);
+  });
+}
 
 module.exports = app;
