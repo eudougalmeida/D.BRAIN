@@ -53,11 +53,9 @@ router.post('/search', async (req, res) => {
   try {
     const { query, filter, sort } = req.body;
 
-    const payload = {
-      query: query || '',
-      filter: filter || {},
-      sort: sort || {}
-    };
+    const payload = { query: query || '' };
+    if (filter && Object.keys(filter).length) payload.filter = filter;
+    if (sort && Object.keys(sort).length) payload.sort = sort;
 
     const response = await notionClient.post('/search', payload);
     res.json(response.data);
