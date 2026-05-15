@@ -31,6 +31,22 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', message: 'D.BRAIN API is running' });
 });
 
+// API Key auth middleware - protects /api/* routes
+app.use('/api', (req, res, next) => {
+  const providedKey = req.header('x-api-key');
+  const expectedKey = process.env.DBRAIN_API_KEY;
+
+  if (!expectedKey) {
+    return res.status(500).json({ error: 'Server misconfigured: DBRAIN_API_KEY not set' });
+  }
+
+  if (!providedKey || providedKey !== expectedKey) {
+    return res.status(401).json({ error: 'Unauthorized: invalid or missing x-api-key header' });
+  }
+
+  next();
+});
+
 // Routes
 app.use('/api/clickup', clickupRoutes);
 app.use('/api/notion', notionRoutes);
