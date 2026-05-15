@@ -11,10 +11,5 @@
       "src": "/(.*)",
       "dest": "/api/index.js"
     }
-  ],
-  "env": {
-    "CLICKUP_TOKEN": "@clickup_token",
-    "NOTION_TOKEN": "@notion_token",
-    "GEMINI_API_KEY": "@gemini_api_key"
-  }
+  ]
 }
