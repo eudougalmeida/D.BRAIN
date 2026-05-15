@@ -3,7 +3,7 @@ const axios = require('axios');
 const router = express.Router();
 
 const NOTION_API = 'https://api.notion.com/v1';
-const API_KEY = process.env.NOTION_API_KEY;
+const API_KEY = process.env.NOTION_TOKEN;
 
 const notionClient = axios.create({
   baseURL: NOTION_API,

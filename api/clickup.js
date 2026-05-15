@@ -3,7 +3,7 @@ const axios = require('axios');
 const router = express.Router();
 
 const CLICKUP_API = 'https://api.clickup.com/api/v2';
-const API_KEY = process.env.CLICKUP_API_KEY;
+const API_KEY = process.env.CLICKUP_TOKEN;
 
 const clickupClient = axios.create({
   baseURL: CLICKUP_API,
