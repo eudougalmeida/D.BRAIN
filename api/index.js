@@ -12,6 +12,20 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+// Root endpoint
+app.get('/', (req, res) => {
+  res.json({
+    name: 'D.BRAIN API',
+    version: '1.0.0',
+    status: 'running',
+    endpoints: {
+      health: '/health',
+      clickup: '/api/clickup',
+      notion: '/api/notion'
+    }
+  });
+});
+
 // Health check
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', message: 'D.BRAIN API is running' });
